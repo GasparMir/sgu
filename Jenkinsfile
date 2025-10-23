@@ -1,29 +1,14 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Parando servicios...') {
-            steps {
-                bat '''
-                    docker compose -p adj-demo down || exit /b 0
-                '''
-            }
-        }
-
-        stage('Eliminando imágenes anteriores...') {
-            steps {
-                bat '''
-                    for /f "tokens=*" %%i in ('docker images --filter "label=com.docker.compose.project=adj-demo" -q') do (
-                        docker rmi -f %%i
-                    )
-                    if errorlevel 1 (
-                        echo No hay imagenes por eliminar
-                    ) else (
-                        echo Imagenes eliminadas correctamente
-                    )
-                '''
-            }
-        }
+stage('Parando y limpiando...') {
+    steps {
+        bat '''
+            REM Detener servicios y eliminar contenedores, imágenes y volúmenes ligados al proyecto
+            docker compose -p sgu-jgml down --rmi all -v || exit /b 0
+        '''
+    }
+}
 
         stage('Obteniendo actualización...') {
             steps {
