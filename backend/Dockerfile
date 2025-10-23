@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN mvn clean package -DskipTests && cp target/*.jar app.jar
+RUN mvn clean package -DskipTests && mv target/sgu-backend-1.0-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 
