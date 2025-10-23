@@ -11,9 +11,9 @@ RUN pnpm install
 COPY . .
 
 # Desde el Docker Compose
-ARG API_HOST
-ARG API_PORT
-ARG API_BASE
+ARG API_HOST=backend
+ARG API_PORT=8080
+ARG API_BASE=/sgu-api
 
 # Para reemplazar en el .env del proyecto
 ENV VITE_API_HOST=$API_HOST
