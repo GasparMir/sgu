@@ -6,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: sgu-database
     ports:
-      - "3307:3306"
+      - "3308:3306"
     volumes:
       - sgu-volume:/var/lib/mysql
       - ./db:/docker-entrypoint-initdb.d
@@ -25,7 +25,7 @@ services:
         API_BASE: /sgu-api
     container_name: sgu-frontend
     ports:
-      - "3000:80"
+      - "3001:80"
     networks:
       - sgu-net
     restart: unless-stopped
